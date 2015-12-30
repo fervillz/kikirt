@@ -15,7 +15,7 @@ function general_panels($wp_customize){
 
 	//add panel
 	$wp_customize->add_panel( 'general_settings', array(
-      'title' => __( 'General Settings' ),
+      'title' => esc_html__( 'General Settings' ),
       'description' => 'Customize settings for site title, tagline, logo, favicon and social links', // Include html tags such as <p>.
       'priority' => 1, // Mixed with top-level-section hierarchy.
 	) );
@@ -32,6 +32,15 @@ function general_panels($wp_customize){
 
 }
 
+function sosimple_social_icons_are_enabled() {
+	if ( get_theme_mod( 'show_header_social_icons', false ) == true || get_theme_mod( 'show_footer_social_icons', false ) == true ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 function section_sitetitle_tagline($wp_customize){
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
@@ -39,8 +48,8 @@ function section_sitetitle_tagline($wp_customize){
 
 	$wp_customize->add_section( 
 		'title_tagline', array(
-	  	'title' => __( 'Site title and tagline' ),
-	  	'description' => __( '' ),
+	  	'title' => esc_html__( 'Site title and tagline' ),
+	  	'description' => esc_html__( '' ),
 	  	'panel' => 'general_settings',
 	  	'priority' => 1,
 	) );
@@ -70,7 +79,7 @@ function section_logo($wp_customize){
 	$wp_customize->add_section( 
 		'logo_favicon', 
 		array(
-		  	'title' => __( 'Logo and Favicon' ),
+		  	'title' => esc_html__( 'Logo and Favicon' ),
 		  	'description' => 'Upload a logo to replace the default site name and description in the header',
     		'panel' => 'general_settings',
 		  	'priority' => 2,
@@ -81,7 +90,7 @@ function section_logo($wp_customize){
     );
 
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'kikirt', array(
-        'label'    => __( 'Logo', 'kikirt' ),
+        'label'    => esc_html__( 'Logo', 'kikirt' ),
         'section'  => 'logo_favicon',
         'settings' => 'logo_favicon',
         'sanitize_callback' => 'esc_url_raw',
@@ -103,47 +112,58 @@ function section_social_links_links($wp_customize){
 $wp_customize->add_section( 
 	'social_links', 
 	array(
-	  	'title' => __( 'Social Links' ),
+	  	'title' => esc_html__( 'Social Links' ),
 	  	'description' => 'Link your favorite social sites links. ',
 		'panel' => 'general_settings',
 	  	'priority' => 3,
 ) );
 
+$wp_customize->add_setting( 'show_header_social_icons', array(
+		'default' => false,
+) );
+
+$wp_customize->add_control( 'show_header_social_icons', array(
+		'label'    => __( 'Show Social Icons', 'sosimple' ) . ' '  . __( 'in Header', 'sosimple' ),
+		'section'  => 'social_links',
+		'type'     => 'checkbox',
+		'priority' => 1,
+	) );
+
 	//facebook
 $wp_customize->add_setting('fb_textbox', array( 'default' => 'facebook.com', 'sanitize_callback' => 'esc_url_raw',) );
-$wp_customize->add_control( 'fb_textbox', array( 'label' => 'Facebook Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'fb_textbox', array( 'label' => 'Facebook Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //twitter
 $wp_customize->add_setting('tw_textbox', array( 'default' => 'twitter.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'tw_textbox', array( 'label' => 'Twitter Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'tw_textbox', array( 'label' => 'Twitter Link', 'active_callback' => 'sosimple_social_icons_are_enabled', 'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //dribbble
 $wp_customize->add_setting('dribbble_textbox', array( 'default' => 'dribbble.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'dribbble_textbox', array( 'label' => 'dribbble Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'dribbble_textbox', array( 'label' => 'dribbble Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //plusgoogle
 $wp_customize->add_setting('plusgoogle_textbox', array( 'default' => 'plusgoogle.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'plusgoogle_textbox', array( 'label' => 'google plus Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'plusgoogle_textbox', array( 'label' => 'google plus Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //pinterest
 $wp_customize->add_setting('pinterest_textbox', array( 'default' => 'pinterest.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'pinterest_textbox', array( 'label' => 'pinterest Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'pinterest_textbox', array( 'label' => 'pinterest Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //github
 $wp_customize->add_setting('github_textbox', array( 'default' => 'github.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'github_textbox', array( 'label' => 'github Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'github_textbox', array( 'label' => 'github Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //tumblr
 $wp_customize->add_setting('tumblr_textbox', array( 'default' => 'tumblr.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'tumblr_textbox', array( 'label' => 'tumblr Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'tumblr_textbox', array( 'label' => 'tumblr Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //youtube
 $wp_customize->add_setting('youtube_textbox', array( 'default' => 'youtube.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'youtube_textbox', array( 'label' => 'youtube Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'youtube_textbox', array( 'label' => 'youtube Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //linkedin
 $wp_customize->add_setting('linkedin_textbox', array( 'default' => 'linkedin.com', 'sanitize_callback' => 'esc_url_raw', ) );
-$wp_customize->add_control( 'linkedin_textbox', array( 'label' => 'linkedin Link', 'section' => 'social_links','type' => 'text',));
+$wp_customize->add_control( 'linkedin_textbox', array( 'label' => 'linkedin Link',  'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links','type' => 'text',));
 
 //social_links links background color on hover
 $wp_customize->add_setting(
@@ -160,7 +180,7 @@ $wp_customize->add_control(
         'color-setting',
         array(
             'label' => 'Color Setting - Background Hover',
-            'section' => 'social_links',
+             'active_callback' => 'sosimple_social_icons_are_enabled','section' => 'social_links',
             'settings' => 'color-setting',
         )
     )
