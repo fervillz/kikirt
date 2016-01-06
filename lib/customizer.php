@@ -16,6 +16,7 @@ function kikirt_customize_register( $wp_customize ) {
 
     general_panels($wp_customize);
     header_panels($wp_customize);
+    sidebar_panels($wp_customize);
 }
 
 add_action( 'customize_register', 'kikirt_customize_register' );

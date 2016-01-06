@@ -29,8 +29,11 @@ function general_panels($wp_customize){
 	//social_links links
 	section_social_links_links($wp_customize);
 
+	//sidebar
+	section_sidebar($wp_customize);
 
 }
+
 
 function sosimple_social_icons_are_enabled() {
 	if ( get_theme_mod( 'show_header_social_icons', false ) == true || get_theme_mod( 'show_footer_social_icons', false ) == true ) {
@@ -40,6 +43,8 @@ function sosimple_social_icons_are_enabled() {
 		return false;
 	}
 }
+
+
 
 function section_sitetitle_tagline($wp_customize){
 

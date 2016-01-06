@@ -174,3 +174,4 @@ CUSTOMIZER
  */
 require get_template_directory() . '/lib/general.php';
 require get_template_directory() . '/lib/header.php';
+require get_template_directory() . '/lib/sidebar.php';
