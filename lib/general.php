@@ -29,8 +29,6 @@ function general_panels($wp_customize){
 	//social_links links
 	section_social_links_links($wp_customize);
 
-	//sidebar
-	section_sidebar($wp_customize);
 
 }
 

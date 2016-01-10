@@ -12,13 +12,14 @@
  */
 function kikirt_customize_register( $wp_customize ) {
 
-   // $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+    $wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
 
     general_panels($wp_customize);
     header_panels($wp_customize);
-    sidebar_panels($wp_customize);
-}
+	sidebar_panels($wp_customize);
 
+}
 add_action( 'customize_register', 'kikirt_customize_register' );
 
 /**
