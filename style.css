@@ -577,7 +577,7 @@ html {
 .menu-toggle:before,
 .format-link .entry-title a:after,
 .social-links ul a:before {
-    font-family: 'FontAwesome';
+    font-family: 'Genericons';
     font-size: 24px;
     font-weight: normal;
     font-style: normal;
@@ -1782,7 +1782,6 @@ object {
 div.sharedaddy div.sd-block {
     padding: 14px 0 14px !important;
 }
-
 /* =Social Links */
 .social-links {
     clear: both;
@@ -1807,15 +1806,15 @@ div.sharedaddy div.sd-block {
     position: relative;
     display: block;
     margin-left: 4px;
-   	margin-top: 2px;
-   	margin-bottom: 4px;
+    margin-top: 2px;
+    margin-bottom: 4px;
     padding: 8px 7px 8px 9px;
     content: '\f415';
     -webkit-transition: all .1s ease-in-out;
-       -moz-transition: all .1s ease-in-out;
-         -o-transition: all .1s ease-in-out;
-            transition: top .3s ease-in-out;
-            transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: top .3s ease-in-out;
+    transition: all .1s ease-in-out;
     text-align: center;
     color: white;
     border-radius: 50%;
@@ -1826,42 +1825,89 @@ div.sharedaddy div.sd-block {
 }
 .social-links ul a:hover:before {
     -webkit-transition: all .1s ease-in-out;
-       -moz-transition: all .1s ease-in-out;
-         -o-transition: all .1s ease-in-out;
-            transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
     text-decoration: none;
-    background: #1c7c7c;
+    background: #d36c44;
 }
-.social-links ul a[href*='wordpress.org']:before,
-.social-links ul a[href*='wordpress.com']:before {
+.social-links ul a[href*='wordpress']:before, .social-links ul a[href*='wordpress']:before {
     content: '\f205';
 }
-.social-links ul a[href*='facebook.com']:before {
-    content: '\f099';
+.social-links ul a[href*='facebook']:before {
+    content: '\f204';
 }
-.social-links ul a[href*='twitter.com']:before {
+.social-links ul a[href*='twitter']:before {
     content: '\f202';
 }
-.social-links ul a[href*='dribbble.com']:before {
-    content: '\f17d';
+.social-links ul a[href*='dribbble']:before {
+    content: '\f201';
 }
-.social-links ul a[href*='plus.google.com']:before {
-    content: '\f0d5';
+.social-links ul a[href*='plus.google']:before, .social-links ul a[href*='plus-google']:before {
+    content: '\f206';
 }
-.social-links ul a[href*='pinterest.com']:before {
-    content: '\f231';
+.social-links ul a[href*='pinterest']:before {
+    content: '\f209';
 }
-.social-links ul a[href*='github.com']:before {
-    content: '\f09b';
+.social-links ul a[href*='github']:before {
+    content: '\f200';
 }
-.social-links ul a[href*='tumblr.com']:before {
-    content: '\f173';
+.social-links ul a[href*='tumblr']:before {
+    content: '\f214';
 }
-.social-links ul a[href*='youtube.com']:before {
-    content: '\f167';
+.social-links ul a[href*='youtube']:before {
+    content: '\f213';
 }
-.social-links ul a[href*='linkedin.com']:before {
-    content: '\f0e1';
+.social-links ul a[href*='flickr']:before {
+    content: '\f211';
+}
+.social-links ul a[href*='vimeo']:before {
+    content: '\f212';
+}
+.social-links ul a[href*='instagram']:before {
+    content: '\f215';
+}
+.social-links ul a[href*='codepen.io']:before , .social-links ul a[href*='codepen-io']:before {
+    content: '\f216';
+}
+.social-links ul a[href*='linkedin']:before {
+    content: '\f207';
+}
+.social-links ul a[href*='foursquare']:before {
+    content: '\f226';
+}
+.social-links ul a[href*='reddit']:before {
+    content: '\f222';
+}
+.social-links ul a[href*='digg']:before {
+    content: '\f221';
+}
+.social-links ul a[href*='getpocket']:before {
+    content: '\f224';
+}
+.social-links ul a[href*='path']:before {
+    content: '\f219';
+}
+.social-links ul a[href*='stumbleupon']:before {
+    content: '\f223';
+}
+.social-links ul a[href*='spotify']:before {
+    content: '\f515';
+}
+.social-links ul a[href*='twitch.tv']:before {
+    content: '\f516';
+}
+.social-links ul a[href*='dropbox']:before {
+    content: '\f225';
+}
+.social-links ul a[href*='/feed']:before {
+    content: '\f515';
+}
+.social-links ul a[href*='skype']:before {
+    content: '\f220';
+}
+.social-links ul a[href*='mailto']:before {
+    content: '\f410';
 }
 
 /* Media Queries */
@@ -1933,14 +1979,6 @@ div.sharedaddy div.sd-block {
         float: left;
         max-width: 60%;
         text-align: left;
-    }
-
-    .social-links {
-        float: right;
-        clear: none;
-        max-width: 40%;
-        margin: 0;
-        text-align: right;
     }
 
     .entry-content {

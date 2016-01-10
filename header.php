@@ -26,12 +26,11 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
-			<?php if ( get_theme_mod( 'kikirt' ) ) : ?>
-			    
-			    <div class='site-logo'>
-			        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'kikirt' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a>
+			<?php if ( get_theme_mod( 'kikirt_logo' ) ) : ?>
+				<div class='site-logo'>
+			        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'kikirt_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a>
 			    </div>
-				<?php else : ?>
+			<?php else : ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php $description = get_bloginfo( 'description', 'display' );
 					if ( $description || is_customize_preview() ) : ?>
@@ -46,37 +45,50 @@
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
 		</nav><!-- #site-navigation -->
 
+		<?php if ( get_theme_mod( 'show_header_social_icons' ) ): ?>
 		<div class="social-links">
 			<ul>
-				<li>
-					<a href="<?php echo get_theme_mod( 'fb_textbox', 'facebook.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'tw_textbox', 'twitter.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'dribbble_textbox', 'dribbble.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'plusgoogle_textbox', 'plus.google.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'pinterest_textbox', 'pinterest.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'github_textbox', 'github.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'tumblr_textbox', 'tumblr.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'youtube_textbox', 'youtube.com' ); ?>"></a>
-				</li>
-				<li>
-					<a href="<?php echo get_theme_mod( 'linkedin_textbox', 'linkedin.com' ); ?>"></a>
-				</li>
-			</ul>
+				<?php $social_sites = 	
+					array(
+						"facebook",
+						"twitter",
+						"dribbble",
+						"plus.google",
+						"pinterest",
+						"github",
+						"tumblr",
+						"youtube",
+						"flickr",
+						"vimeo",
+						"instagram",
+						"codepen-io",
+						"linkedin",
+						"reddit",
+						"digg",
+						"getpocket",
+						"path",
+						"dropbox",
+						"skype",
+						"mailto",
+						"wordpress",
+						);
+					?>
+
+				<?php for ($i = 0; $i <21; $i++): ?>
+					<?php if ( get_theme_mod( $social_sites[$i].'_textbox' ) != 'http://-'): ?>
+						<li class="item-<?php echo $social_sites[$i] ?>">
+							<?php if ( !get_theme_mod( $social_sites[$i].'_textbox' ) ): ?>
+								<a href="<?php echo 'http://'. get_theme_mod( $social_sites[$i].'_textbox', $social_sites[$i].'.com' ); ?>"></a>
+							<?php else: ?>
+								<a href="<?php echo get_theme_mod( $social_sites[$i].'_textbox', $social_sites[$i].'.com' ); ?>"></a>
+							<?php endif; ?>
+						</li>
+					<?php endif; ?>
+				<?php endfor; ?>
+
+				</ul>
 		</div><!-- .social-links -->
+		<?php endif; ?>
 
 	</header><!-- #masthead -->
 
